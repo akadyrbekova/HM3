@@ -1,4 +1,10 @@
-const TodoList = ({ check, setCheck, data }) => {
+import { useEffect } from "react";
+
+const TodoList = ({ data }) => {
+  useEffect(() => {
+    console.log(data);
+  }, []);
+
   return (
     <div className="my-4">
       {/* {data.map((item) => (
@@ -7,8 +13,6 @@ const TodoList = ({ check, setCheck, data }) => {
             <input
               type="checkbox"
               className="w-[50px] h-[50px] border border-black"
-              checked={check}
-              onChange={() => setCheck(!check)}
             />
             <p className="py-[8px] px-[15px]">{item.name}</p>
           </div>

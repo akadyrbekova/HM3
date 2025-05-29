@@ -1,4 +1,5 @@
-import TodoList from "../component/TodoList";
+import TodoList from "../component/TodoList.jsx";
+
 let todos = [
   {
     id: 1,
@@ -21,7 +22,6 @@ let todos = [
     status: false,
   },
 ];
-
 const TodoAddFeatures = () => {
   return (
     <>
