@@ -5,9 +5,14 @@ const TodoList = ({ data }) => {
 
   const [check, setCheck] = useState(false);
   const [itemId, setItemId] = useState(null);
+  const [todos, setTodos] = useState(data);
   const handleChange = (id) => {
     setCheck(!check);
     setItemId(id);
+  };
+
+  const deleteTodo = (id) => {
+    setTodos((todos) => todos.filter((item) => id));
   };
 
   return (
@@ -31,10 +36,18 @@ const TodoList = ({ data }) => {
                 <p className={`py-[8px] px-[15px] ${className}`}>{item.name}</p>
               </div>
               <div className="w-[500px] flex justify-around my-4">
-                <button className="w-[246px] h-[39px] border border-black">
+                <button
+                  type="submit"
+                  className="w-[246px] h-[39px] border border-black"
+                >
                   Edit
                 </button>
-                <button className="w-[246px] h-[39px] border bg-red-500 text-white">
+                <button
+                  onClick={() => {
+                    deleteTodo(item.id);
+                  }}
+                  className="w-[246px] h-[39px] border bg-red-500 text-white"
+                >
                   Delete
                 </button>
               </div>
