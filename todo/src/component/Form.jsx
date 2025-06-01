@@ -1,7 +1,6 @@
 import TodoAddFeatures from "../features/TodoAdd";
 import TodoAdd from "./TodoAdd";
 import TodoFilter from "./TodoFilter";
-import TodoList from "./TodoList";
 
 const Form = () => {
   return (

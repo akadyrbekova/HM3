@@ -1,27 +1,34 @@
 import { useState } from "react";
 
 const TodoList = ({ data }) => {
-  const [check, setCheck] = useState(false);
+  console.log(data);
 
+  const [check, setCheck] = useState(false);
+  const [itemId, setItemId] = useState(null);
   const handleChange = (id) => {
-    setCheck((prev) => {});
+    setCheck(!check);
+    setItemId(id);
   };
 
   return (
     <div className="my-4">
-      {data
-        ? data.map((item) => (
+      {!data || data.length == 0 ? (
+        <p>Список пуст...</p>
+      ) : (
+        data.map((item) => {
+          const className = check && itemId === item.id ? "line-through" : null;
+          return (
             <div key={item.id}>
               <div className="flex items-center">
                 <input
                   type="checkbox"
-                  checked={check}
+                  checked={check && itemId === item.id}
                   className="w-[50px] h-[50px] border border-black"
                   onChange={() => {
                     handleChange(item.id);
                   }}
                 />
-                <p className="py-[8px] px-[15px]">{item.name}</p>
+                <p className={`py-[8px] px-[15px] ${className}`}>{item.name}</p>
               </div>
               <div className="w-[500px] flex justify-around my-4">
                 <button className="w-[246px] h-[39px] border border-black">
@@ -32,8 +39,9 @@ const TodoList = ({ data }) => {
                 </button>
               </div>
             </div>
-          ))
-        : null}
+          );
+        })
+      )}
     </div>
   );
 };
