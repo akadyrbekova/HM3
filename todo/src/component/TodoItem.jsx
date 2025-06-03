@@ -1,6 +1,4 @@
 const TodoItem = ({ item }) => {
-  console.log(item, 555);
-
   return !item ? (
     <p>Список пуст...</p>
   ) : (

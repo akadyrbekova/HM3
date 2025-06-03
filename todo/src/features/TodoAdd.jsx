@@ -1,11 +1,7 @@
 import TodoList from "../component/TodoList.jsx";
 
 const TodoAddFeatures = () => {
-  return (
-    <>
-      <TodoList />
-    </>
-  );
+  return <></>;
 };
 
 export default TodoAddFeatures;
