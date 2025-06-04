@@ -1,7 +1,5 @@
 const TodoItem = ({ item }) => {
-  return !item ? (
-    <p>Список пуст...</p>
-  ) : (
+  return (
     <li>
       <div className="flex items-center">
         <input
