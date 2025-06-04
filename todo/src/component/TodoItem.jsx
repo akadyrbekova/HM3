@@ -1,12 +1,22 @@
+import { useState } from "react";
+
 const TodoItem = ({ item }) => {
+  const [check, setCheked] = useState(false);
+  const onCheked = () => {
+    setCheked(!check);
+  };
   return (
     <li>
       <div className="flex items-center">
         <input
           type="checkbox"
+          checked={check}
+          onChange={onCheked}
           className="w-[50px] h-[50px] border border-black"
         />
-        <p className="py-[8px] px-[15px]">{item.title}</p>
+        <p className={`py-[8px] px-[15px] ${check ? "line-through" : ""} `}>
+          {item.title}
+        </p>
       </div>
       <div className="w-[500px] flex justify-around my-4">
         <button
