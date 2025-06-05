@@ -1,9 +1,11 @@
-import Todo from "./pages/Todo";
+import Navbar from "./component/Navbar";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <div className="App">
-      <Todo />
+      <Navbar />
+      <AppRoutes />
     </div>
   );
 }
