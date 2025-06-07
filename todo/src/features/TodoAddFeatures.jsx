@@ -2,6 +2,7 @@ import { useState } from "react";
 import TodoAdd from "../component/TodoAdd";
 import TodoList from "../component/TodoList";
 
+import TodoFilterFeatures from "./TodoFilterFeatures";
 const TodoAddFeatures = () => {
   const [todos, setTodos] = useState([]);
   const [todoValue, setTodoValue] = useState("");
@@ -30,6 +31,7 @@ const TodoAddFeatures = () => {
         todoValue={todoValue}
         setTodoValue={setTodoValue}
       />
+      <TodoFilterFeatures />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );

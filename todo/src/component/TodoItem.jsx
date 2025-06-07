@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import { FaRegEdit } from "react-icons/fa";
 const TodoItem = ({ item, deleteTodo, editTodo }) => {
   const [check, setCheked] = useState(false);
   const [title, setTitle] = useState(item.title);
+  const [editable, setEditable] = useState(false);
 
   const onCheked = () => {
     setCheked(!check);
@@ -15,20 +16,32 @@ const TodoItem = ({ item, deleteTodo, editTodo }) => {
           type="checkbox"
           checked={check}
           onChange={onCheked}
-          className="w-[50px] h-[50px] border border-black"
+          className="w-[50px] h-[40px] border border-black"
         />
         <input
           onChange={(e) => {
             setTitle(e.target.value);
           }}
           value={title}
-          className={`py-[8px] px-[15px] ${check ? "line-through" : ""} `}
+          disabled={!editable}
+          className={` w-full py-[8px] px-[15px] w-[250px] mx-2 ${
+            editable
+              ? "bg-gray-100 cursor-not-allowed  border border-gray-200  "
+              : "bg-white"
+          } `}
+        />
+        <FaRegEdit
+          className="w-[30px] h-[30px]  cursor-pointer text-indigo-500	"
+          onClick={() => {
+            setEditable(true);
+          }}
         />
       </div>
       <div className="w-[500px] flex justify-around my-4">
         <button
           onClick={() => {
             editTodo(item.id, title);
+            setEditable(false);
           }}
           className="w-[246px] h-[39px] border border-black"
         >
