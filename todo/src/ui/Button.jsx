@@ -1,9 +1,10 @@
-const Button = ({ all, active, completed }) => {
+const Button = ({ onClick, children }) => {
   return (
-    <div className="w-[161px] h-[39px]  border border-black  flex items-center justify-center">
-      {all}
-      {active}
-      {completed}
+    <div
+      onClick={onClick}
+      className="w-[161px] h-[39px] border border-black flex items-center justify-center cursor-pointer hover:bg-gray-100"
+    >
+      {children}
     </div>
   );
 };

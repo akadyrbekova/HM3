@@ -31,7 +31,7 @@ const TodoAddFeatures = () => {
         todoValue={todoValue}
         setTodoValue={setTodoValue}
       />
-      <TodoFilterFeatures />
+      <TodoFilterFeatures todos={todos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
