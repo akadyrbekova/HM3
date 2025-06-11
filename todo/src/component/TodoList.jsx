@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import TodoItem from "../component/TodoItem";
 
 const TodoList = ({ todos, setTodos }) => {
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
-
   const deleteTodo = (id) => {
     const newTodos = todos.filter((item) => item.id != id);
     setTodos(newTodos);

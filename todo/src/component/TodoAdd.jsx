@@ -1,5 +1,4 @@
 const TodoAdd = ({ AddTodo, todoValue, setTodoValue }) => {
-  console.log("typeof setTodoValue:", typeof setTodoValue);
   return (
     <form onSubmit={AddTodo} className="w-[600px] flex flex-col items-center">
       <div className="flex flex-col items-center">
