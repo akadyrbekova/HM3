@@ -1,21 +1,16 @@
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
-const TodoItem = ({ item, deleteTodo, editTodo }) => {
-  const [check, setCheked] = useState(false);
+const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
   const [title, setTitle] = useState(item.title);
   const [editable, setEditable] = useState(false);
-
-  const onCheked = () => {
-    setCheked(!check);
-  };
 
   return (
     <li>
       <div className="flex items-center">
         <input
           type="checkbox"
-          checked={check}
-          onChange={onCheked}
+          checked={item.status}
+          onChange={() => toggleTodoStatus(item.id)}
           className="w-[50px] h-[40px] border border-black"
         />
         <input

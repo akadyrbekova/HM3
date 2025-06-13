@@ -1,40 +1,35 @@
 import { useState, useEffect } from "react";
 import TodoAdd from "../component/TodoAdd";
 import TodoList from "../component/TodoList";
-
 import TodoFilterFeatures from "./TodoFilterFeatures";
+
 const TodoAddFeatures = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Hello world",
-      status: true,
-    },
-    {
-      id: 2,
-      title: "Hello world2",
-      status: false,
-    },
-  ]);
-
   const [todoValue, setTodoValue] = useState("");
-
   const [status, setStatus] = useState("All");
+  const [todos, setTodos] = useState(() => {
+    let localST = localStorage.getItem("obj");
+    return JSON.parse(localST);
+  });
 
   useEffect(() => {
-    const filteredTodo = todos.filter((item) => {
-      if (status === "All") {
-        return item;
-      } else if (item.status === false && status === "Active") {
-        return item;
-      } else if (item.status === true && status === "Completed") {
-        return item;
-      } else {
-        return null;
-      }
-    });
     setTodos(filteredTodo);
   }, [status]);
+
+  useEffect(() => {
+    localStorage.setItem("obj", JSON.stringify(todos));
+  }, [todos]);
+
+  const filteredTodo = todos.filter((item) => {
+    if (item.status === false || (item.status === true && status === "All")) {
+      return item;
+    } else if (item.status === false && status === "Active") {
+      return item;
+    } else if (item.status === true && status === "Completed") {
+      return item;
+    } else {
+      return null;
+    }
+  });
 
   const AddTodo = (e) => {
     e.preventDefault();
@@ -46,7 +41,7 @@ const TodoAddFeatures = () => {
       {
         id: prev.length + 1,
         title: todoValue.trim(),
-        statuss: false,
+        status: false,
       },
     ]);
 

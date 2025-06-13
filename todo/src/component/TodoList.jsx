@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import TodoItem from "../component/TodoItem";
 
 const TodoList = ({ todos, setTodos }) => {
@@ -22,6 +21,13 @@ const TodoList = ({ todos, setTodos }) => {
     setTodos(newTodos);
   };
 
+  const toggleTodoStatus = (id) => {
+    const newTodos = todos.map((item) =>
+      item.id === id ? { ...item, status: !item.status } : item
+    );
+    setTodos(newTodos);
+  };
+
   return !todos || todos.length === 0 ? (
     <p className="text-xl text-center py-6  text-[#4d4d4d]">
       Список задач пуст...
@@ -35,6 +41,7 @@ const TodoList = ({ todos, setTodos }) => {
             item={item}
             deleteTodo={deleteTodo}
             editTodo={editTodo}
+            toggleTodoStatus={toggleTodoStatus}
           />
         );
       })}
