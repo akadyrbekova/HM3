@@ -6,30 +6,37 @@ import TodoFilterFeatures from "./TodoFilterFeatures";
 const TodoAddFeatures = () => {
   const [todoValue, setTodoValue] = useState("");
   const [status, setStatus] = useState("All");
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
   const [todos, setTodos] = useState(() => {
     let localST = localStorage.getItem("obj");
     return JSON.parse(localST);
   });
 
   useEffect(() => {
-    setTodos(filteredTodo);
-  }, [status]);
+    const filtered = todos.filter((item) => {
+      if (status === "All") return true;
+      if (status === "Active") return item.status === false;
+      if (status === "Completed") return item.status === true;
+    });
+    setFilteredTodos(filtered);
+  }, [status, todos]);
 
   useEffect(() => {
     localStorage.setItem("obj", JSON.stringify(todos));
   }, [todos]);
 
-  const filteredTodo = todos.filter((item) => {
-    if (item.status === false || (item.status === true && status === "All")) {
-      return item;
-    } else if (item.status === false && status === "Active") {
-      return item;
-    } else if (item.status === true && status === "Completed") {
-      return item;
-    } else {
-      return null;
-    }
-  });
+  // const filteredTodo = todos.filter((item) => {
+  //   if (item.status === false || (item.status === true && status === "All")) {
+  //     return item;
+  //   } else if (item.status === false && status === "Active") {
+  //     return item;
+  //   } else if (item.status === true && status === "Completed") {
+  //     return item;
+  //   } else {
+  //     return null;
+  //   }
+  // });
 
   const AddTodo = (e) => {
     e.preventDefault();
@@ -56,7 +63,7 @@ const TodoAddFeatures = () => {
         setTodoValue={setTodoValue}
       />
       <TodoFilterFeatures setStatus={setStatus} />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList todos={filteredTodos} setTodos={setTodos} />
     </div>
   );
 };
