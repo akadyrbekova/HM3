@@ -28,8 +28,6 @@ const TodoList = ({ todos, setTodos }) => {
     setTodos(newTodos);
   };
 
-  const setEditable = (id) => {};
-
   return !todos || todos.length === 0 ? (
     <p className="text-xl text-center py-6  text-[#4d4d4d]">
       Список задач пуст...

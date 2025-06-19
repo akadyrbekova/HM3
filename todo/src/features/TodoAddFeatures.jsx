@@ -14,13 +14,27 @@ const TodoAddFeatures = () => {
   });
 
   useEffect(() => {
-    const filtered = todos.filter((item) => {
-      if (status === "All") return true;
-      if (status === "Active") return item.status === false;
-      if (status === "Completed") return item.status === true;
-    });
-    setFilteredTodos(filtered);
-  }, [status, todos]);
+    const url = "https://todo.roboto.kz/todo";
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   const filtered = todos.filter((item) => {
+  //     if (status === "All") return true;
+  //     if (status === "Active") return item.status === false;
+  //     if (status === "Completed") return item.status === true;
+  //   });
+  //   setFilteredTodos(filtered);
+  // }, [status, todos]);
 
   useEffect(() => {
     localStorage.setItem("obj", JSON.stringify(todos));
