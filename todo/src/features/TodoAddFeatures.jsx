@@ -30,6 +30,8 @@ const TodoAddFeatures = () => {
       if (status === "Active") return item.completed === false;
       if (status === "Completed") return item.completed === true;
     });
+    console.log(filtered, "отфильтрованный todo");
+
     setFilteredTodos(filtered);
   }, [status, todos]);
 
@@ -66,7 +68,7 @@ const TodoAddFeatures = () => {
         setTodoValue={setTodoValue}
       />
       <TodoFilterFeatures setStatus={setStatus} />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList todos={filteredTodos} setTodos={setTodos} />
     </div>
   );
 };
