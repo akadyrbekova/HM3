@@ -7,11 +7,7 @@ const TodoAddFeatures = () => {
   const [todoValue, setTodoValue] = useState("");
   const [status, setStatus] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState([]);
-
-  const [todos, setTodos] = useState(() => {
-    let localST = localStorage.getItem("obj");
-    return JSON.parse(localST);
-  });
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const url = "https://todo.roboto.kz/todo";
@@ -23,48 +19,41 @@ const TodoAddFeatures = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setTodos(data);
       });
   }, []);
 
-  // useEffect(() => {
-  //   const filtered = todos.filter((item) => {
-  //     if (status === "All") return true;
-  //     if (status === "Active") return item.status === false;
-  //     if (status === "Completed") return item.status === true;
-  //   });
-  //   setFilteredTodos(filtered);
-  // }, [status, todos]);
-
   useEffect(() => {
-    localStorage.setItem("obj", JSON.stringify(todos));
-  }, [todos]);
-
-  // const filteredTodo = todos.filter((item) => {
-  //   if (item.status === false || (item.status === true && status === "All")) {
-  //     return item;
-  //   } else if (item.status === false && status === "Active") {
-  //     return item;
-  //   } else if (item.status === true && status === "Completed") {
-  //     return item;
-  //   } else {
-  //     return null;
-  //   }
-  // });
+    console.log(todos, "обновленный массив");
+    const filtered = todos.filter((item) => {
+      if (status === "All") return true;
+      if (status === "Active") return item.completed === false;
+      if (status === "Completed") return item.completed === true;
+    });
+    setFilteredTodos(filtered);
+  }, [status, todos]);
 
   const AddTodo = (e) => {
     e.preventDefault();
 
     if (todoValue.trim() === "") return;
 
-    setTodos((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        title: todoValue.trim(),
-        status: false,
+    const url = "https://todo.roboto.kz/todo";
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
       },
-    ]);
+      method: "POST",
+      body: JSON.stringify({
+        title: todoValue.trim(),
+        completed: false,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTodos([...todos, data]);
+      });
 
     setTodoValue("");
   };
@@ -77,7 +66,7 @@ const TodoAddFeatures = () => {
         setTodoValue={setTodoValue}
       />
       <TodoFilterFeatures setStatus={setStatus} />
-      <TodoList todos={filteredTodos} setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };

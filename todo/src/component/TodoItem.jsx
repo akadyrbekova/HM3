@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+
 const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
   const [title, setTitle] = useState(item.title);
   const [editable, setEditable] = useState(false);
@@ -9,27 +10,23 @@ const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
       <div className="flex items-center">
         <input
           type="checkbox"
-          checked={item.status}
+          checked={item.completed}
           onChange={() => toggleTodoStatus(item.id)}
           className="w-[50px] h-[40px] border border-black"
         />
         <input
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
           value={title}
           disabled={!editable}
-          className={` w-full py-[8px] px-[15px] w-[250px] mx-2 ${
+          className={`w-full py-[8px] px-[15px] w-[250px] mx-2 ${
             editable
-              ? "bg-gray-100 cursor-not-allowed  border border-gray-200  "
+              ? "bg-gray-100 cursor-not-allowed border border-gray-200"
               : "bg-white"
-          } `}
+          }`}
         />
         <FaRegEdit
-          className="w-[30px] h-[30px]  cursor-pointer text-indigo-500	"
-          onClick={() => {
-            setEditable(true);
-          }}
+          className="w-[30px] h-[30px] cursor-pointer text-indigo-500"
+          onClick={() => setEditable(true)}
         />
       </div>
       <div className="w-[500px] flex justify-around my-4">
@@ -42,10 +39,9 @@ const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
         >
           Save
         </button>
+
         <button
-          onClick={() => {
-            deleteTodo(item.id);
-          }}
+          onClick={() => deleteTodo(item.id)}
           className="w-[246px] h-[39px] border bg-red-500 text-white"
         >
           Delete
