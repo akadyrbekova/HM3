@@ -7,6 +7,7 @@ const TodoAddFeatures = () => {
   const [todoValue, setTodoValue] = useState("");
   const [status, setStatus] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [searchTodos, setsearchTodos] = useState([]);
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -60,6 +61,9 @@ const TodoAddFeatures = () => {
     setTodoValue("");
   };
 
+  const searchTodo = () => {
+    const found = filteredTodos.filter((item) => {});
+  };
   return (
     <div className="flex flex-col">
       <TodoAdd
