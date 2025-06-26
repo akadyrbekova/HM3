@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import TodoAdd from "../component/TodoAdd";
 import TodoList from "../component/TodoList";
 import TodoFilterFeatures from "./TodoFilterFeatures";
-
+import useAddTodo from "../hooks/Hooks";
 const TodoAddFeatures = () => {
-  const [todoValue, setTodoValue] = useState("");
+  // const [todoValue, setTodoValue] = useState("");
   const [status, setStatus] = useState("All");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [searchTodos, setsearchTodos] = useState([]);
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
+  const { todoValue, setTodoValue, todos, setTodos, addTodo } = useAddTodo();
 
   useEffect(() => {
     const url = "https://todo.roboto.kz/todo";
@@ -36,38 +36,35 @@ const TodoAddFeatures = () => {
     setFilteredTodos(filtered);
   }, [status, todos]);
 
-  const AddTodo = (e) => {
-    e.preventDefault();
+  // const AddTodo = (e) => {
+  //   e.preventDefault();
 
-    if (todoValue.trim() === "") return;
+  //   if (todoValue.trim() === "") return;
 
-    const url = "https://todo.roboto.kz/todo";
-    fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        title: todoValue.trim(),
-        completed: false,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setTodos([...todos, data]);
-      });
+  //   const url = "https://todo.roboto.kz/todo";
+  //   fetch(url, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       title: todoValue.trim(),
+  //       completed: false,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setTodos([...todos, data]);
+  //     });
 
-    setTodoValue("");
-  };
+  //   setTodoValue("");
+  // };
 
-  const searchTodo = () => {
-    const found = filteredTodos.filter((item) => {});
-  };
   return (
     <div className="flex flex-col">
       <TodoAdd
-        AddTodo={AddTodo}
+        AddTodo={addTodo}
         todoValue={todoValue}
         setTodoValue={setTodoValue}
       />

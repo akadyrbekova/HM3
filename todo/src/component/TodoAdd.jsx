@@ -13,7 +13,6 @@ const TodoAdd = ({ AddTodo, todoValue, setTodoValue }) => {
           onChange={(e) => setTodoValue(e.target.value.trim())}
           className="w-[600px] h-[70px] border border-black py-2 px-5"
         />
-
         <button
           type="submit"
           className="w-[600px] h-[45px] bg-black text-white my-2 mx-1"
