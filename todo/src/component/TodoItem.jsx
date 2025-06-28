@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
-
-const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
+import useEdit from "../hooks/useEdit";
+const TodoItem = ({ item, deleteTodo, editTodo }) => {
   const [title, setTitle] = useState(item.title);
   const [editable, setEditable] = useState(false);
-
+  const { toggleTodoStatus } = useEdit();
   return (
     <li>
       <div className="flex items-center">
