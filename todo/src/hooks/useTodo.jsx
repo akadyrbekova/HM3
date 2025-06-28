@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 const useTodo = () => {
   const [todoValue, setTodoValue] = useState("");
-  const [status, setStatus] = useState("All");
-  const [filteredTodos, setFilteredTodos] = useState([]);
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -18,15 +16,6 @@ const useTodo = () => {
         setTodos(data);
       });
   }, []);
-
-  useEffect(() => {
-    const filtered = todos.filter((item) => {
-      if (status === "All") return true;
-      if (status === "Active") return item.completed === false;
-      if (status === "Completed") return item.completed === true;
-    });
-    setFilteredTodos(filtered);
-  }, [status, todos]);
 
   const addTodo = (e) => {
     e.preventDefault();
@@ -73,8 +62,6 @@ const useTodo = () => {
     setTodos,
     addTodo,
     deleteTodo,
-    filteredTodos,
-    setStatus,
   };
 };
 export default useTodo;

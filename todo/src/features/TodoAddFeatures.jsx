@@ -2,17 +2,12 @@ import TodoAdd from "../component/TodoAdd";
 import TodoList from "../component/TodoList";
 import TodoFilterFeatures from "./TodoFilterFeatures";
 import useTodo from "../hooks/useTodo";
-const TodoAddFeatures = () => {
-  const {
-    todoValue,
-    setTodoValue,
-    todos,
-    setTodos,
-    addTodo,
-    filteredTodos,
-    setStatus,
-  } = useTodo();
+import useFilter from "../hooks/useFilter";
 
+const TodoAddFeatures = () => {
+  const { todoValue, setTodoValue, todos, setTodos, addTodo } = useTodo();
+
+  const { setStatus, filteredTodos } = useFilter(todos);
   return (
     <div className="flex flex-col">
       <TodoAdd
