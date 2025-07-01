@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+// import { NotificationContext } from "../context/NotificationContext";
+
 const useTodo = () => {
   const [todoValue, setTodoValue] = useState("");
   const [todos, setTodos] = useState([]);
-
+  // const { noteShow } = useContext(NotificationContext);
   useEffect(() => {
     const url = "https://todo.roboto.kz/todo";
     fetch(url, {
@@ -51,7 +53,9 @@ const useTodo = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((data) => console.log("Удалено:", data))
+      .then((data) => {
+        // noteShow("Удалено");
+      })
       .catch((error) => console.error("Ошибка:", error));
   };
 

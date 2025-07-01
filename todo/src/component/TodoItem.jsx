@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import { NotificationContext } from "../context/NotificationContext";
 
 const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
   const [title, setTitle] = useState(item.title);
   const [editable, setEditable] = useState(false);
 
+  const { noteShow, note } = useContext(NotificationContext);
+
+  const handleDelete = (id) => {
+    deleteTodo(id);
+    noteShow("Удалено");
+  };
   return (
     <li>
       <div className="flex items-center">
@@ -41,7 +48,7 @@ const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
         </button>
 
         <button
-          onClick={() => deleteTodo(item.id)}
+          onClick={() => handleDelete(item.id)}
           className="w-[246px] h-[39px] border bg-red-500 text-white"
         >
           Delete

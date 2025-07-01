@@ -1,12 +1,17 @@
 import Navbar from "./component/Navbar";
+import Note from "./component/Note";
+import { Notificationprovider } from "./context/NotificationContext";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <AppRoutes />
-    </div>
+    <Notificationprovider>
+      <div className="App">
+        <Navbar />
+        <Note />
+        <AppRoutes />
+      </div>
+    </Notificationprovider>
   );
 }
 
