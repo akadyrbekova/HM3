@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-// import { NotificationContext } from "../context/NotificationContext";
 
 const useTodo = () => {
   const [todoValue, setTodoValue] = useState("");
   const [todos, setTodos] = useState([]);
-  // const { noteShow } = useContext(NotificationContext);
+
   useEffect(() => {
     const url = "https://todo.roboto.kz/todo";
     fetch(url, {

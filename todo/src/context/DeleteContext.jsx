@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-export const NotificationContext = React.createContext();
+export const DeleteContext = React.createContext();
 
 export const Notificationprovider = ({ children }) => {
   const [note, setNote] = useState("");
@@ -10,8 +10,8 @@ export const Notificationprovider = ({ children }) => {
     }, "1000");
   };
   return (
-    <NotificationContext.Provider value={{ noteShow, note }}>
+    <DeleteContext.Provider value={{ noteShow, note }}>
       {children}
-    </NotificationContext.Provider>
+    </DeleteContext.Provider>
   );
 };

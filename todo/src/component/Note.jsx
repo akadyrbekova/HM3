@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { NotificationContext } from "../context/NotificationContext";
+import { DeleteContext } from "../context/DeleteContext";
 
 const Note = () => {
-  const { note } = useContext(NotificationContext);
+  const { note } = useContext(DeleteContext);
   return (
     <div className="flex justify-end">
       {note && (

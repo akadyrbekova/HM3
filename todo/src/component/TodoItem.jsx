@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
-import { NotificationContext } from "../context/NotificationContext";
+import { DeleteContext } from "../context/DeleteContext";
 
 const TodoItem = ({ item, deleteTodo, editTodo, toggleTodoStatus }) => {
   const [title, setTitle] = useState(item.title);
   const [editable, setEditable] = useState(false);
 
-  const { noteShow, note } = useContext(NotificationContext);
+  const { noteShow, note } = useContext(DeleteContext);
 
   const handleDelete = (id) => {
     deleteTodo(id);
